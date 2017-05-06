@@ -7,7 +7,13 @@ import '../index.html';
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 
+import MyLabel from './components/MyLabel';
+import TextAreaCounter from './components/TextAreaCounter';
+
 ReactDOM.render(
-    <h1>Hello</h1>,
+    <div>
+        <MyLabel />
+        <TextAreaCounter defaultValue='hello'/>
+    </div>,
     document.getElementById('app')
 );
