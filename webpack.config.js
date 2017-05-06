@@ -56,6 +56,9 @@ module.exports = {
         extractSass,
         tsChecker
     ],
+    resolve: {
+        extensions: ['.ts', '.tsx', '.js', '.jsx']
+    },
     externals: {
         'react': 'React',
         'react-dom': 'ReactDOM'
