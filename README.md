@@ -11,10 +11,24 @@ This project uses the following libraries.
 ```
 git clone https://github.com/myomi/webpack-react-starter.git
 cd webpack-react-starter
+```
+
+```
+yarn install
+```
+
+or 
+
+```
 npm install
 ```
 
 ## Run(webpack-dev-server)
+```
+yarn start
+```
+
+or
 
 ```
 npm start
@@ -22,6 +36,12 @@ npm start
 And access to localhost:8080.
 
 ## Build
+```
+yarn run build
+```
+
+or
+
 
 ```
 npm run build
