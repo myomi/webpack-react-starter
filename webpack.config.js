@@ -22,6 +22,12 @@ module.exports = {
                 use: [
                     {
                         loader: 'awesome-typescript-loader',
+                    },
+                    {
+                        loader: 'tslint-loader',
+                        options: {
+                            emitErrors: true
+                        }
                     }
                 ]
             },

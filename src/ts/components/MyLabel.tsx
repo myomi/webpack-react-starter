@@ -1,8 +1,8 @@
-import * as React from 'react';
+import * as React from "react";
 
 interface Props {
-    message?: string
-};
+    message?: string;
+}
 
 /**
  * The sample of stateless component.
@@ -12,7 +12,7 @@ const MyLabel: React.SFC<Props> = (props: Props): JSX.Element => (
 );
 
 MyLabel.defaultProps = {
-    message: 'Hello, React!'
-}
+    message: "Hello, React!",
+};
 
 export default MyLabel;
