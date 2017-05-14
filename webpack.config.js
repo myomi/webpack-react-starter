@@ -1,20 +1,42 @@
 const path = require('path');
-const ExtractTextPlugin = require("extract-text-webpack-plugin");
-const { CheckerPlugin } = require('awesome-typescript-loader')
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const { CheckerPlugin } = require('awesome-typescript-loader');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const HtmlWebpackIncludeAssetsPlugin = require('html-webpack-include-assets-plugin');
 
+const DIST_VENDOR_JS = 'vendor/js/';
+
+/*
+ * settings for external libraries
+ */
+const EXTERNALS = [
+    {
+        name: 'react',
+        object: 'React',
+        dir: 'node_modules/react/dist',
+        filename: 'react.js'
+    },
+    {
+        name: 'react-dom',
+        object: 'ReactDOM',
+        dir: 'node_modules/react-dom/dist',
+        filename: 'react-dom.js'
+    }
+];
+
 const extractSass = new ExtractTextPlugin({
-    filename: "app.css"
+    filename: 'app.css'
 });
 
 const tsChecker = new CheckerPlugin();
 
-const copy = new CopyWebpackPlugin([
-    { from: 'node_modules/react/dist/react.js', to: 'vendor/js/' },
-    { from: 'node_modules/react-dom/dist/react-dom.js', to: 'vendor/js/' }
-]);
+const copy = new CopyWebpackPlugin(EXTERNALS.map(e => {
+    return {
+        from: path.join(e.dir, e.filename),
+        to: DIST_VENDOR_JS
+    };
+}));
 
 const html = new HtmlWebpackPlugin({
     filename: 'index.html',
@@ -23,10 +45,9 @@ const html = new HtmlWebpackPlugin({
 });
 
 const include = new HtmlWebpackIncludeAssetsPlugin({
-    assets: [
-        'vendor/js/react.js',
-        'vendor/js/react-dom.js'
-    ],
+    assets: EXTERNALS.map(e => {
+        return path.join(DIST_VENDOR_JS, e.filename);
+    }),
     append: false,
     hash: true
 });
@@ -58,18 +79,18 @@ module.exports = {
                 test: /\.scss$/,
                 use: extractSass.extract({
                     use: [{
-                        loader: "css-loader",
+                        loader: 'css-loader',
                         options: {
                             sourceMap: true
                         }
                     }, {
-                        loader: "sass-loader",
+                        loader: 'sass-loader',
                         options: {
                             sourceMap: true
                         }
                     }],
                     // use style-loader in development
-                    fallback: "style-loader"
+                    fallback: 'style-loader'
                 })
             },
             {
@@ -107,10 +128,10 @@ module.exports = {
     resolve: {
         extensions: ['.ts', '.tsx', '.js', '.jsx']
     },
-    externals: {
-        'react': 'React',
-        'react-dom': 'ReactDOM'
-
-    },
-    devtool: "source-map"
+    externals: {} /* use EXTERNALS */,
+    devtool: 'source-map'
 };
+
+EXTERNALS.forEach(e => {
+    module.exports.externals[e.name] = e.object;
+});
