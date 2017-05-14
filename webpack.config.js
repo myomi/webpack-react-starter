@@ -1,12 +1,35 @@
 const path = require('path');
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
 const { CheckerPlugin } = require('awesome-typescript-loader')
+const CopyWebpackPlugin = require('copy-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const HtmlWebpackIncludeAssetsPlugin = require('html-webpack-include-assets-plugin');
 
 const extractSass = new ExtractTextPlugin({
     filename: "app.css"
 });
 
 const tsChecker = new CheckerPlugin();
+
+const copy = new CopyWebpackPlugin([
+    { from: 'node_modules/react/dist/react.js', to: 'vendor/js/' },
+    { from: 'node_modules/react-dom/dist/react-dom.js', to: 'vendor/js/' }
+]);
+
+const html = new HtmlWebpackPlugin({
+    filename: 'index.html',
+    template: 'src/index.html',
+    hash: true
+});
+
+const include = new HtmlWebpackIncludeAssetsPlugin({
+    assets: [
+        'vendor/js/react.js',
+        'vendor/js/react-dom.js'
+    ],
+    append: false,
+    hash: true
+});
 
 module.exports = {
     entry: './src/ts/index.tsx',
@@ -30,13 +53,6 @@ module.exports = {
                         }
                     }
                 ]
-            },
-            {
-                test: /\.html$/,
-                loader: 'file-loader',
-                options: {
-                    name: '[name].[ext]'
-                }
             },
             {
                 test: /\.scss$/,
@@ -83,7 +99,10 @@ module.exports = {
     },
     plugins: [
         extractSass,
-        tsChecker
+        tsChecker,
+        copy,
+        html,
+        include
     ],
     resolve: {
         extensions: ['.ts', '.tsx', '.js', '.jsx']
