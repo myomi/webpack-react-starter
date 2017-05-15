@@ -4,16 +4,21 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "npm run clean && webpack -p",
-    "clean": "rimraf dist",
-    "start": "webpack-dev-server"
+    "all": "npm test && npm run build",
+    "build": "npm run clean:build && webpack -p",
+    "clean:build": "rimraf dist",
+    "clean:test": "rimraf dist/test",
+    "start": "webpack-dev-server",
+    "test": "npm run clean:test && webpack --config webpack.config.test.js && ava dist/test/tests.js"
   },
   "keywords": [],
   "author": "",
   "license": "MIT",
   "devDependencies": {
+    "ava": "^0.19.1",
     "awesome-typescript-loader": "^3.1.3",
     "copy-webpack-plugin": "^4.0.1",
+    "cross-env": "^5.0.0",
     "css-loader": "^0.28.0",
     "extract-text-webpack-plugin": "^2.1.0",
     "file-loader": "^0.11.1",
@@ -28,7 +33,8 @@
     "typescript": "^2.3.2",
     "url-loader": "^0.5.8",
     "webpack": "^2.4.1",
-    "webpack-dev-server": "^2.4.5"
+    "webpack-dev-server": "^2.4.5",
+    "webpack-node-externals": "^1.6.0"
   },
   "dependencies": {
     "@types/react": "^15.0.23",

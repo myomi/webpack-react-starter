@@ -66,6 +66,9 @@ module.exports = {
                 use: [
                     {
                         loader: 'awesome-typescript-loader',
+                        options: {
+                            configFileName: 'tsconfig.json'
+                        }
                     },
                     {
                         loader: 'tslint-loader',
