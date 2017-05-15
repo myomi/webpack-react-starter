@@ -12,7 +12,7 @@ const MyLabel: React.SFC<Props> = (props: Props): JSX.Element => (
 );
 
 MyLabel.defaultProps = {
-    message: "Hello, React!",
+    message: "",
 };
 
 export default MyLabel;
