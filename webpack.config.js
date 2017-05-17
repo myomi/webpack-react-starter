@@ -1,6 +1,7 @@
 const path = require('path');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const { CheckerPlugin } = require('awesome-typescript-loader');
+const Stylelint = require('stylelint-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const HtmlWebpackIncludeAssetsPlugin = require('html-webpack-include-assets-plugin');
@@ -30,6 +31,8 @@ const extractSass = new ExtractTextPlugin({
 });
 
 const tsChecker = new CheckerPlugin();
+
+const stylelint = new Stylelint();
 
 const copy = new CopyWebpackPlugin(EXTERNALS.map(e => {
     return {
@@ -122,6 +125,7 @@ module.exports = {
         ]
     },
     plugins: [
+        stylelint,
         extractSass,
         tsChecker,
         copy,
