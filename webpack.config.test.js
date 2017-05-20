@@ -8,7 +8,7 @@ module.exports = {
     target: 'node',
     entry: './test/tests.ts',
     output: {
-        path: path.resolve(__dirname, 'dist', 'test'),
+        path: path.resolve(__dirname, 'dist'),
         filename: 'tests.js'
     },
     module: {
@@ -39,5 +39,5 @@ module.exports = {
     resolve: {
         extensions: ['.ts', '.tsx', '.js', '.jsx']
     },
-    externals: [nodeExternals()],
+    externals: [nodeExternals()]
 };

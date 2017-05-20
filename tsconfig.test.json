@@ -2,7 +2,10 @@
     "compilerOptions": {
         "module": "commonjs",
         "target": "es2015",
-        "jsx": "react"
+        "outDir": "dist",
+        "jsx": "react",
+        "sourceMap": false,
+        "inlineSourceMap": true
     },
     "include": [
         "test/**/*"
