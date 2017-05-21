@@ -1,15 +1,15 @@
 {
   "name": "webpack-react-starter",
   "version": "0.1.0",
-  "description": "",
+  "description": "template for React and Webpack2",
   "main": "index.js",
   "scripts": {
     "all": "npm test && npm run build",
     "build": "npm run clean:build && webpack -p",
-    "clean:build": "rimraf dist",
-    "clean:test": "rimraf dist/test",
     "start": "webpack-dev-server",
-    "test": "jest"
+    "test": "npm run clean:test && jest",
+    "clean:build": "rimraf dist",
+    "clean:test": "rimraf coverage"
   },
   "keywords": ["webpack", "react", "typescript", "starter"],
   "author": "myomi",
