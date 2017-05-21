@@ -1,6 +1,6 @@
 {
   "name": "webpack-react-starter",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -11,8 +11,8 @@
     "start": "webpack-dev-server",
     "test": "jest"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": ["webpack", "react", "typescript", "starter"],
+  "author": "myomi",
   "license": "MIT",
   "devDependencies": {
     "@types/enzyme": "^2.8.0",
