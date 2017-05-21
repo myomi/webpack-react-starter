@@ -1,15 +1,14 @@
-import test from "ava";
 import { shallow } from "enzyme";
 import * as React from "react";
 
 import MyLabel from "../../src/ts/components/MyLabel";
 
-test("MyLabel has no message", async (t) => {
+test("MyLabel has no message", () => {
     const wrapper = shallow(<MyLabel/>);
-    t.is(wrapper.text(), "");
+    expect(wrapper.text()).toBe("");
 });
 
-test("MyLabel has message", async (t) => {
+test("MyLabel has message", () => {
     const wrapper = shallow(<MyLabel message="hello"/>);
-    t.is(wrapper.text(), "hello");
+    expect(wrapper.text()).toBe("hello");
 });
