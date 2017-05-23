@@ -10,6 +10,8 @@ import TextAreaCounter from "./components/TextAreaCounter";
 
 ReactDOM.render(
     <div>
+        <i className="fa fa-bath"></i>
+        <img src="./cat.jpeg"></img>
         <MyLabel />
         <TextAreaCounter defaultValue="hello"/>
         <Image/>

@@ -1,6 +1,6 @@
 import * as React from "react";
 
-import image from "./pexels-photo-67660.jpeg";
+import image from "./dog.jpeg";
 
 /**
  * The sample of stateless component.

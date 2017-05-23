@@ -34,12 +34,19 @@ const tsChecker = new CheckerPlugin();
 
 const stylelint = new Stylelint();
 
-const copy = new CopyWebpackPlugin(EXTERNALS.map(e => {
+const copyVendor = new CopyWebpackPlugin(EXTERNALS.map(e => {
     return {
         from: path.join(e.dir, e.filename),
         to: DIST_VENDOR_JS
     };
 }));
+
+const copyStatic = new CopyWebpackPlugin([
+    {
+        from: 'src/images',
+        to: '.'
+    }
+]);
 
 const html = new HtmlWebpackPlugin({
     filename: 'index.html',
@@ -135,7 +142,8 @@ module.exports = {
         stylelint,
         extractSass,
         tsChecker,
-        copy,
+        copyVendor,
+        copyStatic,
         html,
         include
     ],
