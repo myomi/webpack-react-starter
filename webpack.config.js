@@ -121,6 +121,13 @@ module.exports = {
                     limit: 10000,
                     mimetype: 'application/octet-stream'
                 }
+            },
+            {
+                test: /.(jpg|jpeg|png)$/,
+                loader: 'file-loader',
+                options: {
+                    name: '[name].[ext]'
+                }
             }
         ]
     },
